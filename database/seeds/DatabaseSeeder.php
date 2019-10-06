@@ -1,5 +1,8 @@
 <?php
 
+use App\Post;
+use App\Profile;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,6 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        //factory(User::class, 20)->create();
+
+        //factory(Profile::class, 50)->create();
+        factory(Post::class, 500)->create();
         // $this->call(UsersTableSeeder::class);
     }
 }
