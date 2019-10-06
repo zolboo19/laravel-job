@@ -19,3 +19,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/test_hello/{name}/{age}', 'HomeController@test_hello')->name('test_hello');
+
+Route::redirect('/here', '/home', 301);

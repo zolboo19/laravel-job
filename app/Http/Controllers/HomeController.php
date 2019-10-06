@@ -25,4 +25,10 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function test_hello($name, $age){
+        // echo $name;
+        // echo $age;
+        return view('test_hello', compact('name', 'age'));
+    }
 }
