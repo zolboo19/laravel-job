@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Contact;
 use Illuminate\Http\Request;
 
-class TaskController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(10);
-        $all_users = User::get();
-        return view('home', compact('users', 'all_users'));
+        $contacts = Contact::all();
+        return view('contacts.index', compact('contacts'));
     }
 
     /**
@@ -24,12 +23,9 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(User $usr)
+    public function create()
     {
-        //dd($usr->email);
-        //$user = User::findOrFail($id);
-        //dd($user->email);
-        return view('home', compact('usr'));
+        return view('contacts.create');
     }
 
     /**
@@ -40,17 +36,18 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $title = $request->get('title');
-        dd($title);
+        //dd($request->all());
+        Contact::create($request->all());
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Contact $contact)
     {
         //
     }
@@ -58,10 +55,10 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Contact $contact)
     {
         //
     }
@@ -70,10 +67,10 @@ class TaskController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Contact $contact)
     {
         //
     }
@@ -81,10 +78,10 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Contact $contact)
     {
         //
     }

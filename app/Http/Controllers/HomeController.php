@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $users = User::paginate(10);
+        $all_users = User::get();
+        return view('home', compact('users', 'all_users'));
     }
 
     public function test_hello($name, $age){

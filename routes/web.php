@@ -47,3 +47,9 @@ Route::get('/post-tag', function(){
 Route::get('/posts-tag', 'PostController@indexTag');
 
 
+//contact
+
+
+Route::get('/contact', 'ContactController@index');
+Route::get('/contact/create', 'ContactController@create');
+Route::post('/contact/create' , 'ContactController@store')->name('contact.store');
