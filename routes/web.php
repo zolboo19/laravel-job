@@ -51,7 +51,9 @@ Route::get('/posts-tag', 'PostController@indexTag');
 
 
 Route::get('/contact', 'ContactController@index')->name('contact.index');
-Route::get('/contact/create', 'ContactController@create');
+Route::get('/contact/create', 'ContactController@create')->name('contact.create');
 Route::post('/contact/create' , 'ContactController@store')->name('contact.store');
 Route::get('/contact/{contact}/edit', 'ContactController@edit')->name('contact.edit');
 Route::post('/contact/{contact}/update', 'ContactController@update')->name('contact.update');
+Route::get('/contact/{contact}/show', 'ContactController@show')->name('contact.show');
+Route::post('/contact/{contact}/destroy', 'ContactController@destroy')->name('contact.destroy');

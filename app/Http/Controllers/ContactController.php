@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\Http\Requests\ContactValidation;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -34,11 +35,11 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContactValidation $request)
     {
         //dd($request->all());
         Contact::create($request->all());
-        return redirect()->back();
+        return redirect()->to('/contact');
     }
 
     /**
@@ -49,7 +50,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+        return view('contacts.show', compact('contact'));
     }
 
     /**
@@ -71,7 +72,7 @@ class ContactController extends Controller
      * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(ContactValidation $request, Contact $contact)
     {
         //dd($contact);
         //Contact::update($request->all());
@@ -93,6 +94,7 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+        return redirect()->to('/contact');
     }
 }
