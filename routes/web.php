@@ -13,10 +13,27 @@
 
 use App\Http\Controllers\TaskController;
 use App\Post;
+use Illuminate\Support\Str;
 
 Route::get('/', function () {
     return view('welcome');
     //hello
+});
+
+Route::get('/helpers', function(){
+    //$okay = 'Okay';
+    //dd($okay);
+
+    $sentence = "Хурдан бор үнэг залхуу нохойн дээгүүр харайдаг.";
+    $value = "children";
+    //echo Str::limit($sentence, 30, '...');
+    //echo Str::plural($value);
+    //echo Str::singular($value);
+    //echo Str::slug($sentence);
+    //echo Str::title($sentence);
+    //echo Str::random(30);
+    $converted = Str::snake('dadMom');
+    echo $converted;
 });
 
 Auth::routes();
