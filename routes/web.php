@@ -50,6 +50,8 @@ Route::get('/posts-tag', 'PostController@indexTag');
 //contact
 
 
-Route::get('/contact', 'ContactController@index');
+Route::get('/contact', 'ContactController@index')->name('contact.index');
 Route::get('/contact/create', 'ContactController@create');
 Route::post('/contact/create' , 'ContactController@store')->name('contact.store');
+Route::get('/contact/{contact}/edit', 'ContactController@edit')->name('contact.edit');
+Route::post('/contact/{contact}/update', 'ContactController@update')->name('contact.update');

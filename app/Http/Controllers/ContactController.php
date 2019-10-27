@@ -60,7 +60,8 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        //
+        //dd($contact);
+        return view('contacts.edit', compact('contact'));
     }
 
     /**
@@ -72,7 +73,16 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        //
+        //dd($contact);
+        //Contact::update($request->all());
+        $contact->name = $request->name;
+        $contact->address = $request->address;
+        $contact->phone = $request->phone;
+        $contact->save();
+
+        //return redirect()->route('contact.index');
+        return redirect()->to('/contact');
+
     }
 
     /**
