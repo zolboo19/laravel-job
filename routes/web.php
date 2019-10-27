@@ -54,7 +54,7 @@ Route::post('/create', 'TaskController@store')->name('jobs.store');
 
 
 //posts
-Route::get('/posts', 'PostController@index');
+Route::get('/posts', 'PostController@index')->name('posts.index');
 
 Route::get('/post-tag', function(){
     $post = Post::find(3);
@@ -74,3 +74,4 @@ Route::get('/contact/{contact}/edit', 'ContactController@edit')->name('contact.e
 Route::post('/contact/{contact}/update', 'ContactController@update')->name('contact.update');
 Route::get('/contact/{contact}/show', 'ContactController@show')->name('contact.show');
 Route::post('/contact/{contact}/destroy', 'ContactController@destroy')->name('contact.destroy');
+
