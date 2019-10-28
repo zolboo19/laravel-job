@@ -11,9 +11,9 @@
                     posts
                     <a href="{{ action('PostController@index') }}">Нийтлэлүүд</a>
                     <img src="{{ asset('image.jpeg') }}" alt="">
-                    {{-- @foreach ($posts as $post)
+                    @foreach ($posts as $post)
                     <p> {{ $post->title }} || {{ $post->user->name }}</p>
-                    @endforeach --}}
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -13,11 +13,31 @@
 
 use App\Http\Controllers\TaskController;
 use App\Post;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 Route::get('/', function () {
-    return view('welcome');
-    //hello
+    //return view('welcome');
+    $array = [
+        'name' => 'Boldoo Lkhagva',
+        'age' => 29
+    ];
+
+    $array = Arr::except($array, ['age']);
+
+    // $array = Arr::add($array, 'country', 'Монгол');
+    // $array = Arr::add($array, 'number', '99999999');
+
+    // $array = Arr::divide($array);
+
+    // $number = [
+    //     ['1' , '2', '3'],
+    //     ['6' , '5', '6'],
+    // ];
+
+    //$number = Arr::collapse($number);
+
+    dd($array);
 });
 
 Route::get('/helpers', function(){
