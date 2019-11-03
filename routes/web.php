@@ -89,5 +89,6 @@ Route::post('/contact/{contact}/destroy', 'ContactController@destroy')->name('co
 
 //Album
 
-Route::get('/album', 'ImageController@index')->name('album.index');
-Route::post('/album', 'ImageController@store')->name('album.store');
+Route::get('/album', 'ImageController@index')->name('album.idex');
+Route::get('/album/create', 'ImageController@create')->name('album.create');
+Route::post('/album/create', 'ImageController@store')->name('album.store');
