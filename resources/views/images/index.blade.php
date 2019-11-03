@@ -4,23 +4,35 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <div class="show"></div>
             <div class="card">
 
-                <div class="input-group control-group initial-add-more">
-                    <input type="file" name="image[]" class="form-control" id="image">
-                    <div class="input-group-btn">
-                        <button class="btn btn-primary btn-add-more">Нэмэх</button>
-                    </div>
-                </div>
+                <form id="form" action="{{ route('album.store') }}" method="post" enctype="multipart/form-data">
+                    @csrf
 
-                <div class="copy" style="display: none;">
+                    <div class="form-group">
+                        <label> Зургийн цомгийн нэр</label>
+                        <input type="text" name="album" class="form-control">
+                    </div>
+                    <div class="input-group control-group initial-add-more">
+                            <input type="file" name="image[]" class="form-control" id="image">
+                            <div class="input-group-btn">
+                                <button class="btn btn-primary btn-add-more" type="button">Нэмэх</button>
+                            </div>
+                    </div>
+                    <div class="copy" style="display: none;">
                         <div class="input-group control-group add-more">
                             <input type="file" name="image[]" class="form-control" id="image">
                             <div class="input-group-btn">
-                                <button class="btn btn-danger remove">Устгах</button>
+                                <button class="btn btn-danger remove" type="button">Устгах</button>
                             </div>
                         </div>
-                </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <button class="btn btn-success" type="submit">Хадгалах</button>
+                    </div>
+                </form>
 
 
                     {{-- <form action="{{ route('album.store')}}" method="POST" enctype="multipart/form-data">
@@ -44,6 +56,7 @@
         </div>
     </div>
 </div>
+
 @endsection
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
@@ -57,5 +70,27 @@
         $("body").on("click", ".remove", function(){
             $(this).parents(".control-group").remove();
         })
+    })
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#form").on('submit', (function(e){
+            e.preventDefault();
+            $.ajax({
+                url: "/album",
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(response){
+                    $('.show').html(response);
+                    $("#form")[0].reset();
+                },
+                error: function(res){
+                    alert("Алдаа гарлаа, зургийг серверт байршуулж чадсангүй.");
+                }
+            })
+        }))
     })
 </script>
