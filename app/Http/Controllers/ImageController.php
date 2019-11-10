@@ -28,8 +28,8 @@ class ImageController extends Controller
      */
     public function create()
     {
-        $images = Image::all();
-        return view('images.create', compact('images'));
+        //$images = Image::all();
+        return view('images.create');
     }
 
     /**
@@ -65,9 +65,11 @@ class ImageController extends Controller
      * @param  \App\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function show(Image $image)
+    public function show($id)
     {
-        //
+        //dd($id);
+        $albums = Album::findOrFail($id);
+        return view('images.gallery', compact('albums'));
     }
 
     /**
@@ -99,8 +101,12 @@ class ImageController extends Controller
      * @param  \App\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Image $image)
+    public function destroy($id)
     {
-        //
+        $deletedimage = Image::findOrFail($id);
+        $filePath = $deletedimage->name;
+        $deletedimage->delete();
+        \Storage::delete(['public/' . $filePath]);
+        return redirect('/album')->with('Message', 'Зураг амжилттай устлаа.');
     }
 }
