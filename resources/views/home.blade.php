@@ -6,13 +6,14 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
-                <p>{{ Auth::user()->name }}</p>
-                <p>{{ Auth::user()->profile->address }}</p>
+                {{-- <p>{{ Auth::user()->name }}</p>
+                <p>{{ Auth::user()->profile->address }}</p> --}}
 
 
 
                 <div class="card-body">
-                    @foreach ($users as $user)
+                    <a href="{{ route('album.index') }}">Зургийн цомог</a>
+                    {{-- @foreach ($users as $user)
                         <p> {{ $user->id }} </p>
                         <p> {{ $user->name }} </p>
                         <p> {{ $user->email }} </p>
@@ -27,7 +28,7 @@
 
                     @foreach ($all_users as $all_user)
                         <p> {{ $all_user->name }} || {{ $all_user->profile['address'] }}</p>
-                    @endforeach
+                    @endforeach --}}
                 </div>
             </div>
         </div>

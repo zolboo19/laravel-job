@@ -2,6 +2,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', function () {
+    return view('home');
+});
 Auth::routes();
 //contact
 
@@ -16,7 +19,9 @@ Route::post('/contact/{contact}/destroy', 'ContactController@destroy')->name('co
 //Album
 
 Route::get('/album', 'ImageController@index')->name('album.index');
-Route::get('/album/create', 'ImageController@create')->name('album.create');
-Route::post('/album/create', 'ImageController@store')->name('album.store');
+Route::get('/album/create', 'ImageController@create')->name('album.create')->middleware('admin');
+Route::post('/album/create', 'ImageController@store')->name('album.store')->middleware('admin');
+Route::post('/album/image', 'ImageController@image')->name('album.image');
 Route::get('/album/{id}', 'ImageController@show')->name('album.show');
 Route::post('/album/destroy/{id}', 'ImageController@destroy')->name('album.destroy');
+Route::post('/album/add/image', 'ImageController@albumImage')->name('album.add.image');
