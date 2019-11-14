@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Album;
 use Illuminate\Http\Request;
+use Image;
 
 class AlbumController extends Controller
 {
@@ -81,5 +82,28 @@ class AlbumController extends Controller
     public function destroy(Album $album)
     {
         //
+    }
+
+    public function storeUpdateIndex()
+    {
+        $albums = Album::with('images')->get();
+        return view('images.upload', compact('albums'));
+    }
+    public function storeUpdate(Request $request)
+    {
+        //dd($request->all());
+        $this->validate($request, [
+            'image' => 'required'
+        ]);
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $img = Image::make($file)->fit(300, 200);
+            $img->save(public_path('storage/' . $filename));
+            Album::where('id', 2)->update([
+                'image' => $filename
+            ]);
+        }
+        return "Done";
     }
 }

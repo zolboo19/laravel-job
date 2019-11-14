@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Album;
+use Intervention\Image\Facades\Image as IntervationImage;
 use App\Image;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ class ImageController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin', ['only' => ['image', 'albumImage', 'destroy']]);
+        $this->middleware('admin', ['only' => ['image', 'albumImage', 'destroy', 'storeUpdate']]);
     }
     /**
      * Display a listing of the resource.
